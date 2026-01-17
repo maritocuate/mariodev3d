@@ -1,8 +1,12 @@
 import { OrbitControls, Environment } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import MacbookCustom from "./components/MacbookCustom"
+import { useMediaQuery } from "react-responsive"
 
 function App() {
+  const isMobile = useMediaQuery({
+    query: '(min-width: 1224px)'
+  })
 
   return (
     <main>
@@ -12,7 +16,7 @@ function App() {
            background
         />
 
-        <MacbookCustom scale={0.08} position={[0, -0.2, 0]} rotation={[0, -2.3, 0]} />
+        <MacbookCustom scale={isMobile ? 0.08 : 0.04} position={[-0.1, -0.2, 0]} rotation={[0, -2.3, 0]} />
 
         <OrbitControls enableZoom={false} />
       </Canvas>

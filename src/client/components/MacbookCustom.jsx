@@ -7,7 +7,7 @@ Files: MacbookCustom.glb [4.01MB] > /home/lea/Documentos/mariodev3d/public/model
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
-function MacbookCustom(props) {
+export default function MacbookCustom(props) {
   const { nodes, materials } = useGLTF('/models/MacbookCustom-transformed.glb')
   return (
     <group {...props} dispose={null}>
@@ -36,5 +36,3 @@ function MacbookCustom(props) {
 }
 
 useGLTF.preload('/models/MacbookCustom-transformed.glb')
-
-export default MacbookCustom

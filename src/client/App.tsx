@@ -1,26 +1,29 @@
-import { OrbitControls, Environment } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
-import MacbookCustom from "./components/MacbookCustom"
-import { useMediaQuery } from "react-responsive"
+import Scene from "./components/Scene";
+import { Environment, OrbitControls } from "@react-three/drei";
 
 function App() {
-  const isMobile = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
-
   return (
-    <main>
-      <Canvas id="canvas" camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
+    <div style={{ position: "relative" }}>
+      <div 
+        id="scroll-area" 
+        style={{ 
+          height: "300vh",
+          position: "relative",
+          zIndex: 1,
+          opacity: 0
+        }}
+      />
+
+      <Canvas id="canvas" style={{ position: 'fixed' }} camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
         <Environment
-           files="/puresky.exr"
-           background
+          files="/puresky.exr"
+          background
         />
-
-        <MacbookCustom scale={isMobile ? 0.08 : 0.04} position={[-0.1, -0.2, 0]} rotation={[0, -2.3, 0]} />
-
+        <Scene />
         <OrbitControls enableZoom={false} />
       </Canvas>
-    </main>
+    </div>
   )
 }
 

@@ -20,8 +20,8 @@ function Scene () {
         if (!animations.length) return
         mixer.current = new AnimationMixer(scene)
 
-        scene.position.set(0, 0, -1)
-        scene.rotation.set(0.2, -1.9, 0.1)
+        scene.position.set(0.1, 0, 0)
+        scene.rotation.set(0.2, -1.9, 0.25)
     }, [scene, animations])
 
     useFrame((_, delta) => {

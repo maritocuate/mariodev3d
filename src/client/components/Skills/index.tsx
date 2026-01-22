@@ -12,8 +12,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 function Skills() {
     const sectionRef = useRef<HTMLDivElement>(null)
-    const titleRef = useRef<HTMLDivElement>(null)
-    const contentRef = useRef<HTMLParagraphElement>(null)
 
     useGSAP(() => {
       if (!sectionRef.current) return

@@ -8,7 +8,7 @@ function App() {
       <div 
         id="scroll-area" 
         style={{ 
-          height: "300vh",
+          height: "400vh",
           position: "relative",
           zIndex: 1,
           opacity: 0

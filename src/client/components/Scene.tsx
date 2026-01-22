@@ -1,80 +1,45 @@
-import { useGSAP } from "@gsap/react"
-import { useLayoutEffect, useRef, useState } from "react"
-import { AnimationAction, AnimationClip, AnimationMixer } from "three"
+import { useLayoutEffect, useRef } from "react"
+import { AnimationMixer, Group } from "three"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import useScrollAnimation from "../utils/useScrollAnimation";
 
 gsap.registerPlugin(ScrollTrigger)
 
 function Scene () {
     const { scene, animations } = useGLTF("/models/MacbookCustom-transformed.glb")
-    const mixer = useRef<AnimationMixer | null>(null)
-    const actionRef = useRef<AnimationAction | null>(null)
-    const clipRef = useRef<AnimationClip | null>(null)
-    const [isReady, setIsReady] = useState(false)
+
+    const mixer = useRef<AnimationMixer>(null)
+    const groupRef = useRef<Group>(null)
+    const floatRef = useRef(0)
 
     useLayoutEffect(() => {
-        if (animations && animations.length > 0 && scene && !mixer.current) {
-            mixer.current = new AnimationMixer(scene)
-            clipRef.current = animations[0]
-            
-            // Usar setTimeout para evitar el setState síncrono
-            const timer = setTimeout(() => {
-                setIsReady(true)
-            }, 0)
-            
-            return () => clearTimeout(timer)
-        }
+        if (!animations.length) return
+        mixer.current = new AnimationMixer(scene)
+
+        scene.position.set(0, 0, -1)
+        scene.rotation.set(0.2, -1.9, 0.1)
     }, [scene, animations])
 
-    // Actualizar mixer en cada frame
     useFrame((_, delta) => {
-        if (mixer.current) {
-            mixer.current.update(delta)
-        }
+        if (!groupRef.current) return
+      
+        floatRef.current += delta
+        groupRef.current.position.y =
+          Math.sin(floatRef.current * .2) * 0.1
+        groupRef.current.rotation.z =
+          Math.sin(floatRef.current) * 0.02
     })
 
-    useGSAP(() => {
-        if (!mixer.current || !clipRef.current) return
-        
-        console.log("Configurando animación con ScrollTrigger")
-        
-        const action = mixer.current.clipAction(clipRef.current)
-        actionRef.current = action
-        
-        action.play()
-        action.paused = true
-        action.time = 0
-        
-        ScrollTrigger.create({
-            trigger: "#scroll-area",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.1,
-            markers: true,
-            onUpdate: (self) => {
-                if (actionRef.current && clipRef.current) {
-                    actionRef.current.time = clipRef.current.duration * self.progress
-                    
-                    if (mixer.current) {
-                        mixer.current.update(0)
-                    }
-                }
-            }
-        })
-        
-        return () => {
-            if (actionRef.current) {
-                actionRef.current.stop()
-            }
-        }
-    }, [isReady])
+    useScrollAnimation(mixer, scene, animations, "#scroll-area")
     
     return(
-        <primitive object={scene} scale={[0.05,0.05,0.05]} />
+        <group ref={groupRef}>
+            <primitive object={scene} scale={[0.05,0.05,0.05]} />
+        </group>
     )
 }
 

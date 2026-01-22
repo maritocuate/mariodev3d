@@ -37,6 +37,7 @@ function Home() {
 
         gsap.to(sectionRef.current, {
             opacity: 0,
+            scale: 1.1,
             scrollTrigger: {
                 trigger: "#scroll-area",
                 start: "top top",

@@ -28,7 +28,7 @@ main {
 }
 
 .title-section {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   text-align: right;
@@ -39,17 +39,14 @@ main {
 .section {
   width: calc(100% - 30px);
   height: calc(100vh - 30px);
-  left: 0;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   position: fixed;
-  z-index: 2;
+  top: 0;
+  z-index: 9;
   border: 15px solid white;
-
-  scroll-snap-align: start;
 }
 
 .header {
@@ -57,4 +54,8 @@ main {
   text-align: left;
   font-size: 6rem;
   line-height: 0.75;
+}
+
+.space {
+  height: 100vh;
 }

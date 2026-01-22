@@ -1,3 +1,15 @@
+:root {
+  font-family: 'Abel', sans-serif, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -13,4 +25,36 @@ main {
   top: 0;
   width: 100vw;
   height: 100vh;
+}
+
+.title-section {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  top: 0;
+  left: 4rem;
+}
+
+.section {
+  width: calc(100% - 30px);
+  height: calc(100vh - 30px);
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: fixed;
+  z-index: 2;
+  border: 15px solid white;
+
+  scroll-snap-align: start;
+}
+
+.header {
+  font-family: 'Bebas Neue', sans-serif;
+  text-align: left;
+  font-size: 6rem;
+  line-height: 0.75;
 }

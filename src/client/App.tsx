@@ -1,6 +1,8 @@
 import { Canvas } from "@react-three/fiber"
-import Scene from "./components/Scene";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei"
+
+import Scene from "./components/Scene"
+import Home from "./components/Home"
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           opacity: 0
         }}
       />
+
+      <Home />
 
       <Canvas id="canvas" style={{ position: 'fixed' }} camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
         <Environment

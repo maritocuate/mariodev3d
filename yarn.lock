@@ -368,6 +368,16 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
+"@fontsource/abel@^5.2.7":
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/abel/-/abel-5.2.7.tgz#811abd3c68fd2a95e8ba4c82101bef76dad3e531"
+  integrity sha512-C4iyv0u8xPN9+PVyi/NWTqHZREh6L7Q7yewuD22W35gK8BHyn2qZ9oGweYbo71+ZuTogQA1SmAQdWAdcqQ/7lg==
+
+"@fontsource/bebas-neue@^5.2.7":
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/bebas-neue/-/bebas-neue-5.2.7.tgz#6ae02a6bf93cb59ff2ed9627911ff569f26b58d5"
+  integrity sha512-DsmBrmq55d9BCU0mt4DT4RZDdH8vhWRKEUOfbuNB1EEjMuwbtFvM8N+3gIlkYSFbsb10P8Q19BV5OdpMu2h0fA==
+
 "@gsap/react@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@gsap/react/-/react-2.1.2.tgz#bfc055a41b402e8d1dc56839e9d077407027b0a0"

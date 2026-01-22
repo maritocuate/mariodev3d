@@ -1,3 +1,5 @@
+import '@fontsource/abel'
+import '@fontsource/bebas-neue'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'

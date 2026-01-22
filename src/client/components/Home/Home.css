@@ -1,0 +1,23 @@
+.title-section {
+    max-width: 300px;
+}
+
+.subtitle {
+    top: 12.3rem;
+    right: -0.3rem;
+    font-size: 0.7rem;
+    position: absolute;
+    min-width: 170px;
+    letter-spacing: 7.1px;
+}
+
+.line {
+    padding-top: 3px;
+}
+
+@media (max-width: 768px) {
+    .subtitle {
+        margin-top: 1rem;
+    }
+}
+  

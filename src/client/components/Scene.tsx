@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from "react"
 import { AnimationMixer, Group } from "three"
-import gsap from "gsap";
+import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 import { useGLTF } from "@react-three/drei";

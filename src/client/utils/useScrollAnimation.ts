@@ -42,7 +42,7 @@ function useScrollAnimation(
             duration: 1
         }, 0)
         
-        // 2️⃣ primera pose (1 → 2)
+        // 2️⃣ About
         tl.to(scene.position, {
             y: 0.3,
             z: 2,
@@ -55,16 +55,16 @@ function useScrollAnimation(
             duration: 1,
         }, "<") // mismo tramo
         
-        // 3️⃣ segunda pose al seguir scrolleando (2 → 3)
+        // 3️⃣ Skills
         tl.to(scene.position, {
-            x: 0.9,
-            y: 0.1,
-            z: 1,
+            x: -0.4,
+            y: 0.7,
+            z: 2.6,
             duration: 1,
         }, 3)
         tl.to(scene.rotation, {
-            x: -0.05,
-            y: 3.7,
+            x: -0.08,
+            y: 4.1,
             z: 0.1,
             duration: 1,
         }, "<")

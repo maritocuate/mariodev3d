@@ -14,22 +14,22 @@ function useScrollAnimation(
 ) {
     useGSAP(() => {
         if (!mixerRef.current || animations.length === 0) return
-    
+
         const action = mixerRef.current.clipAction(animations[0])
         action.play()
         action.paused = true
         action.time = 0
-    
+
         const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.5,
-            //markers: true,
-          },
+            scrollTrigger: {
+                trigger,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.5,
+                //markers: true,
+            },
         })
-    
+
         // 1️⃣ apertura tapa (0 → 1)
         tl.to({}, {
             onUpdate: () => {
@@ -41,7 +41,7 @@ function useScrollAnimation(
             },
             duration: 1
         }, 0)
-        
+
         // 2️⃣ About
         tl.to(scene.position, {
             y: 0.3,
@@ -54,7 +54,7 @@ function useScrollAnimation(
             z: Math.PI / -6,
             duration: 1,
         }, "<") // mismo tramo
-        
+
         // 3️⃣ Skills
         tl.to(scene.position, {
             x: -0.4,
@@ -68,13 +68,27 @@ function useScrollAnimation(
             z: 0.1,
             duration: 1,
         }, "<")
-  
-    
+
+        // 3️⃣ Contact
+        tl.to(scene.position, {
+            x: 0.8,
+            y: 0.7,
+            //z: 2.6,
+            duration: 1,
+        }, 6)
+        tl.to(scene.rotation, {
+            x: -0.3,
+            y: 5.8,
+            z: 0,
+            duration: 1,
+        }, "<")
+
+
         return () => {
-          tl.kill()
-          action.stop()
+            tl.kill()
+            action.stop()
         }
-      }, [scene, animations])
+    }, [scene, animations])
 }
 
 export default useScrollAnimation

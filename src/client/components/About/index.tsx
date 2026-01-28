@@ -20,7 +20,7 @@ function About() {
       scrollTrigger: {
         trigger: "scroll-area",
         start: () => window.innerHeight * 1.2 + " top",
-        end: () => window.innerHeight * 5.2 + " top",
+        end: () => window.innerHeight * 5.8 + " top",
         scrub: 0.9
       }
     })

@@ -20,7 +20,8 @@ function Skills() {
       scrollTrigger: {
         trigger: "scroll-area",
         start: () => window.innerHeight * 6.2 + " top",
-        end: () => window.innerHeight * 10.2 + " top",
+        end: () => window.innerHeight * 11.2 + " top",
+        //markers: true,
         scrub: 0.9
       }
     })

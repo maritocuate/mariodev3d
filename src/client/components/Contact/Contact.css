@@ -1,0 +1,45 @@
+#contact .title-section {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 0;
+    left: 6rem;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact .content {
+    margin: -0.15rem;
+    text-align: left;
+    line-height: 1.24rem;
+    max-width: 32rem;
+    left: 4rem;
+    position: fixed;
+    top: 9rem;
+}
+
+.section-contact .links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit !important;
+}
+
+.section-contact .link {
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+}
+
+.section-contact .email {
+    font-size: 1.2rem;
+    top: -0.6rem;
+    letter-spacing: 0.75rem;
+    position: relative;
+}

@@ -1,7 +1,8 @@
+import { Suspense, lazy } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
 
-import Scene from "./components/Scene"
+const Scene = lazy(() => import("./components/Scene"))
 import Home from "./components/Home"
 import About from "./components/About"
 import Skills from "./components/Skills"
@@ -26,7 +27,9 @@ function App() {
           files="/puresky.exr"
           background
         />
-        <Scene />
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
       </Canvas>
     </>
   )

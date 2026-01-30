@@ -48,3 +48,15 @@ a {
     letter-spacing: 0.75rem;
     position: relative;
 }
+
+@media screen and (max-width: 900px) {
+    .section-contact .links {
+        flex-direction: column;
+        line-height: 1.3rem;
+    }
+
+    .section-contact .email {
+        top: 0.7rem;
+        letter-spacing: 0.1rem;
+    }
+}

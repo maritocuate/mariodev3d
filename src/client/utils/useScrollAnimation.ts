@@ -2,6 +2,7 @@ import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 import { AnimationMixer, AnimationClip, Group } from "three"
 import { useGSAP } from "@gsap/react"
+import { useMediaQuery } from "react-responsive"
 import type { RefObject } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -12,6 +13,8 @@ function useScrollAnimation(
     animations: AnimationClip[],
     trigger: string
 ) {
+    const isMobile = useMediaQuery({ query: "(max-width: 900px)" })
+
     useGSAP(() => {
         if (!mixerRef.current || animations.length === 0) return
 
@@ -67,7 +70,7 @@ function useScrollAnimation(
         // 3️⃣ Contact
         tl.to(scene.position, {
             x: 0,
-            y: -0.3,
+            y: isMobile ? -0.7 : -0.3,
             z: 0.2,
             duration: 1,
         }, 6)

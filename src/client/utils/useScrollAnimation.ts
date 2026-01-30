@@ -67,12 +67,12 @@ function useScrollAnimation(
         // 3️⃣ Contact
         tl.to(scene.position, {
             x: 0,
-            y: -0.2,
+            y: -0.3,
             z: 0.2,
             duration: 1,
         }, 6)
         tl.to(scene.rotation, {
-            x: -0.2,
+            x: -0.7,
             y: 6.3,
             z: 0,
             duration: 1,

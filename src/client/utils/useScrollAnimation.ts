@@ -31,15 +31,10 @@ function useScrollAnimation(
         })
 
         // 1️⃣ apertura tapa (0 → 1)
-        tl.to({}, {
-            onUpdate: () => {
-                const openDuration = 1
-                const t = Math.min(tl.time(), openDuration)
-                action.time = animations[0].duration * (t / openDuration)
-                // action.time = animations[0].duration * tl.progress()
-                mixerRef.current?.update(0)
-            },
-            duration: 1
+        tl.to(action, {
+            time: animations[0].duration,
+            duration: 1,
+            onUpdate: () => { mixerRef.current?.update(0) }
         }, 0)
 
         // 2️⃣ About
@@ -71,16 +66,23 @@ function useScrollAnimation(
 
         // 3️⃣ Contact
         tl.to(scene.position, {
-            x: 0.8,
-            y: 0.7,
-            //z: 2.6,
+            x: 0,
+            y: -0.2,
+            z: 0.2,
             duration: 1,
         }, 6)
         tl.to(scene.rotation, {
-            x: -0.3,
-            y: 5.8,
+            x: -0.2,
+            y: 6.3,
             z: 0,
             duration: 1,
+        }, "<")
+
+        // Cierre tapa
+        tl.to(action, {
+            time: 0,
+            duration: 1,
+            onUpdate: () => { mixerRef.current?.update(0) }
         }, "<")
 
 

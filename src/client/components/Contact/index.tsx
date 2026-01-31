@@ -31,9 +31,9 @@ function Contact() {
 
         tl.fromTo(
             sectionRef.current,
-            { opacity: 0, scale: 0.9 },
+            { autoAlpha: 0, scale: 0.9 },
             {
-                opacity: 1,
+                autoAlpha: 1,
                 scale: 1,
                 ease: "power3.out",
                 duration: 1,

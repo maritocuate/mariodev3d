@@ -12,6 +12,7 @@
 
 html,
 body {
+  background-color: #5f77f0;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -26,6 +27,7 @@ main {
   top: 0;
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(45deg, #5f77f0 0.000%, #c84fc0 50.000%, #4870c5 100.000%);
 }
 
 .title-section {

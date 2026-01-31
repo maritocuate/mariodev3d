@@ -22,11 +22,8 @@ function App() {
       <Skills />
       <Contact />
 
-      <Canvas id="canvas" style={{ position: 'fixed' }} camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
-        <Environment
-          files="/puresky.exr"
-          background
-        />
+      <Canvas id="canvas" style={{ position: 'fixed' }} camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }} gl={{ alpha: true }}>
+        <Environment preset="dawn" />
         <Suspense fallback={null}>
           <Scene />
         </Suspense>

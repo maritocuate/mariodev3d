@@ -24,7 +24,7 @@ function Contact() {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: "scroll-area",
-                start: () => window.innerHeight * 11.2 + " top",
+                start: () => window.innerHeight * 12.5 + " top",
                 scrub: 0.9
             }
         })

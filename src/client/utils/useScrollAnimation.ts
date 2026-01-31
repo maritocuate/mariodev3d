@@ -84,9 +84,9 @@ function useScrollAnimation(
         // Cierre tapa
         tl.to(action, {
             time: 0,
-            duration: 1,
+            duration: 0.5,
             onUpdate: () => { mixerRef.current?.update(0) }
-        }, "<")
+        }, 6.5)
 
 
         return () => {

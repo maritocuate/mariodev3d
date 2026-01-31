@@ -16,8 +16,11 @@
 }
 
 @media (max-width: 768px) {
+    .title-section {
+        left: 2rem;
+    }
+
     .subtitle {
         margin-top: 1rem;
     }
 }
-  

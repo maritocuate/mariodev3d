@@ -10,7 +10,8 @@
   scrollbar-width: none;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -58,4 +59,10 @@ main {
 
 .space {
   height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .section {
+    border: none;
+  }
 }

@@ -1,29 +1,29 @@
 #about .header {
-    position: fixed;
-    text-align: right;
-    right: 4rem;
+  position: fixed;
+  text-align: right;
+  right: 4rem;
 }
 
 .content {
-    margin: -0.15rem;
-    text-align: right;
-    line-height: 1.24rem;
-    max-width: 32rem;
-    right: 4rem;
-    position: fixed;
-    top: 9rem;
+  margin: -0.15rem;
+  text-align: right;
+  line-height: 1.24rem;
+  max-width: 32rem;
+  right: 4rem;
+  position: fixed;
+  top: 10rem;
 }
 
 @media (max-width: 768px) {
-    #about .header {
-        max-width: 250px;
-        right: 2rem;
-    }
+  #about .header {
+    max-width: 250px;
+    right: 2rem;
+  }
 
-    .content {
-        max-width: 18rem;
-        text-align: justify;
-        top: 13rem;
-        right: 2rem;
-    }
+  .content {
+    max-width: 18rem;
+    text-align: justify;
+    top: 13rem;
+    right: 2rem;
+  }
 }

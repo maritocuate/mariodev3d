@@ -57,16 +57,9 @@ function About() {
       <section className="title-section dimension">
         <h1 ref={titleRef} className="header">About Me</h1>
         <p ref={contentRef} className='content'>
-          Hi! My name is Mario and I live in Buenos Aires, Argentina. Ive been
-          programming for about 10 years (when Flash sites were very popular).
-          Over the past four years, I've been extensively working with React
-          and NextJs to keep the same language in the backend. In addition to my
-          frontend expertise, I have hands-on experience with both relational
-          and non-relational databases. In my life I have worked in product and
-          service companies in teams with great professionals and diverse web
-          and mobile challenges. Always trying to use the latest libraries and
-          technologies. I really love to develop software and keep myself
-          updated in this exciting field.
+          Hi! I'm Mario, a frontend engineer based in Buenos Aires, Argentina, with nearly 10 years of experience building web applications. Over the last four years, I’ve specialized in React and Next.js, creating scalable, high-performance interfaces and full-stack solutions using the same stack across frontend and backend.
+          <br />
+          I’ve worked with both relational and non-relational databases, and collaborated in product-driven and service-based teams facing diverse web and mobile challenges. I’m passionate about writing clean, modern code, staying up to date with the ecosystem, and constantly improving how users experience software.
         </p>
       </section>
     </div>

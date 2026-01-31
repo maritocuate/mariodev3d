@@ -20,7 +20,7 @@
   bottom: 0;
   right: -3rem;
   opacity: 0.3;
-  transform: scale(0.6);
+  width: 17rem;
 }
 
 @media (max-width: 768px) {

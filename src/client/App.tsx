@@ -9,6 +9,7 @@ import Home from "./components/Home"
 import About from "./components/About"
 import Skills from "./components/Skills"
 import Contact from "./components/Contact"
+import Loader from "./components/Loader"
 
 function App() {
   const [dpr, setDpr] = useState(1.5)
@@ -43,7 +44,7 @@ function App() {
         />
 
         <Environment preset="dawn" />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <Scene />
         </Suspense>
         <EffectComposer multisampling={0}>

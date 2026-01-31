@@ -3,7 +3,7 @@
 }
 
 .subtitle {
-    top: 12.3rem;
+    top: 12.6rem;
     right: -0.3rem;
     font-size: 0.7rem;
     position: absolute;
@@ -12,7 +12,7 @@
 }
 
 .line {
-    padding-top: 3px;
+    padding-top: 4px;
 }
 
 @media (max-width: 768px) {

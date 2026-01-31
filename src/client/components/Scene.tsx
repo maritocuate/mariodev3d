@@ -43,7 +43,7 @@ function Scene() {
 
     return (
         <group ref={groupRef}>
-            <primitive object={scene} scale={[0.05, 0.05, 0.05]} />
+            <primitive object={scene} scale={isMobile ? [0.025, 0.025, 0.025] : [0.05, 0.05, 0.05]} />
         </group>
     )
 }

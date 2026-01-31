@@ -42,7 +42,7 @@ function useScrollAnimation(
 
         // 2️⃣ About
         tl.to(scene.position, {
-            y: 0.3,
+            y: isMobile ? -0.4 : 0.3,
             z: 2,
             duration: 1,
         }, 0)
@@ -55,8 +55,8 @@ function useScrollAnimation(
 
         // 3️⃣ Skills
         tl.to(scene.position, {
-            x: -0.4,
-            y: 0.7,
+            x: isMobile ? -0.1 : -0.4,
+            y: isMobile ? 1.3 : 0.7,
             z: 2.6,
             duration: 1,
         }, 3)

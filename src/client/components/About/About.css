@@ -17,10 +17,13 @@
 @media (max-width: 768px) {
     #about .header {
         max-width: 250px;
+        right: 2rem;
     }
+
     .content {
-        max-width: 15rem;
+        max-width: 18rem;
         text-align: justify;
         top: 13rem;
+        right: 2rem;
     }
 }

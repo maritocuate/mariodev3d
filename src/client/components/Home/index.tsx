@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
 
 import './Home.css'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -57,6 +58,12 @@ function Home() {
                 <h1 ref={titleRef} className="header">Mario Quiroga</h1>
                 <p ref={subtitleRef} className="subtitle">software developer</p>
             </section>
+            <DotLottieReact
+                className='scroll-down-animation'
+                src="assets/scrolldown.json"
+                loop
+                autoplay
+            />
         </div>
     )
 }

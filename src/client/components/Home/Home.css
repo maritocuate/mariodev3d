@@ -18,9 +18,9 @@
 .scroll-down-animation {
     position: absolute;
     bottom: 0;
-    right: -5rem;
-    opacity: 0.5;
-    transform: scale(0.7);
+    right: -3rem;
+    opacity: 0.3;
+    transform: scale(0.95);
 }
 
 @media (max-width: 768px) {

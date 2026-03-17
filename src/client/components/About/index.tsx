@@ -57,9 +57,11 @@ function About() {
       <section className="title-section dimension">
         <h1 ref={titleRef} className="header">About Me</h1>
         <p ref={contentRef} className='content'>
-          Hi! I'm Mario, a frontend engineer based in Buenos Aires, Argentina, with nearly 10 years of experience building web applications. Over the last four years, I’ve specialized in React and Next.js, creating scalable, high-performance interfaces and full-stack solutions using the same stack across frontend and backend.
-          <br />
-          I’ve worked with both relational and non-relational databases, and collaborated in product-driven and service-based teams facing diverse web and mobile challenges. I’m passionate about writing clean, modern code, staying up to date with the ecosystem, and constantly improving how users experience software.
+          Hi! My name is Mario and I live in Buenos Aires, Argentina. I’ve been programming for about 10 years, starting back when Flash websites were still a thing.<br />
+          Over the past four years, I’ve focused on building modern web applications with React and Next.js (TypeScript), working across both frontend and backend to deliver scalable and consistent solutions. I also have experience working with both relational and non-relational databases.<br /><br />
+          I’ve worked in both product and service companies, collaborating with talented teams on a wide range of web and mobile challenges. I enjoy working with modern tools and continuously evolving technologies to improve both development experience and product quality.<br /><br />
+          More recently, I’ve been integrating AI into my workflow using tools like Cursor—designing custom agent workflows, automating development tasks, and enhancing code quality through AI-assisted testing, refactoring, and code review processes.<br /><br />
+          I genuinely enjoy building software and continuously pushing myself to stay up to date in this fast-moving field.
         </p>
       </section>
     </div>

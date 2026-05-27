@@ -27,7 +27,8 @@ main {
   top: 0;
   width: 100vw;
   height: 100dvh;
-  background: linear-gradient(45deg, #5f77f0 0.000%, #c84fc0 50.000%, #4870c5 100.000%);
+  /*background: linear-gradient(45deg, #5f77f0 0.000%, #c84fc0 50.000%, #4870c5 100.000%);*/
+  background: linear-gradient(45deg, #0c1e5d, #001053, #0005a1);
 }
 
 .title-section {

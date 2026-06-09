@@ -94,7 +94,7 @@ function Contact() {
                         calendly
                     </span>
                     <a
-                        href={'https://marioquiroga.vercel.app' + links.resume}
+                        href={'https://marioqdev.vercel.app' + links.resume}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

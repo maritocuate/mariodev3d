@@ -12,7 +12,7 @@ const links = {
     linkedin: 'https://www.linkedin.com/in/mario-quiroga-73299527/',
     github: 'https://github.com/maritocuate',
     resume: '/resume.pdf',
-    calendly: 'https://calendly.com/mario300/30min/',
+    calendly: 'https://calendly.com/mario300/1h',
 }
 
 function Contact() {

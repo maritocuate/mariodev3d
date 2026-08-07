@@ -1,8 +1,12 @@
-import { Suspense, lazy, useState } from "react"
+import { Suspense, lazy, useEffect, useState } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Environment, PerformanceMonitor } from "@react-three/drei"
+import gsap from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
 
 import { EffectComposer, SMAA } from "@react-three/postprocessing"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Scene = lazy(() => import("./components/Scene"))
 import Home from "./components/Home"
@@ -14,6 +18,10 @@ import Loader from "./components/Loader"
 
 function App() {
   const [dpr, setDpr] = useState(1.5)
+
+  useEffect(() => {
+    ScrollTrigger.normalizeScroll(true)
+  }, [])
 
   return (
     <>

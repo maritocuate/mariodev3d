@@ -37,3 +37,9 @@
     border-radius: 6px;
     transition: opacity 0.05s linear;
 }
+
+@media (max-width: 900px) {
+    .model-hud--screen {
+        display: none;
+    }
+}

@@ -112,6 +112,7 @@
   }
 
   .tiles-wrapper {
-    width: calc(100% - 70px);
+    left: 0;
+    width: 100%;
   }
 }

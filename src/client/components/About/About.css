@@ -18,12 +18,13 @@
   #about .header {
     max-width: 250px;
     right: 2rem;
+    line-height: 0.9;
   }
 
   .content {
     max-width: 18rem;
     text-align: justify;
-    top: 13rem;
+    top: 16rem;
     right: 2rem;
   }
 }

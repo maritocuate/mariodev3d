@@ -26,7 +26,7 @@ const _screenWorldPos = new Vector3()
 const _camToScreen = new Vector3()
 
 function Scene() {
-    const { scene, animations } = useGLTF("/models/TerminalV2-transformed.glb")
+    const { scene, animations } = useGLTF("/models/TerminalV3-transformed.glb")
 
     const mixer = useRef<AnimationMixer>(null)
     const groupRef = useRef<Group>(null)

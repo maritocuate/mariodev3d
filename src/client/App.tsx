@@ -28,7 +28,7 @@ function App() {
       <div
         id="scroll-area"
         style={{
-          height: "1400vh"
+          height: "1400dvh"
         }}
       />
       <Home />

@@ -36,15 +36,16 @@ function Scene() {
 
     const isMobile = useMediaQuery({ query: "(max-width: 900px)" })
 
-    const sceneY = isMobile ? -0.5 : 0.8
+    const sceneY = isMobile ? 0.5 : 0.8
+    const sceneX = isMobile ? 0 : 0.1
 
     useLayoutEffect(() => {
-        scene.position.set(0.1, sceneY, 1.9)
+        scene.position.set(sceneX, sceneY, 1.9)
         scene.rotation.set(-0.5, -0.6, -0.1)
 
         if (!animations.length) return
         mixer.current = new AnimationMixer(scene)
-    }, [scene, animations])
+    }, [scene, animations, sceneX, sceneY])
 
     useFrame((state, delta) => {
         if (!groupRef.current) return
@@ -71,7 +72,7 @@ function Scene() {
     return (
         <>
             <group ref={groupRef}>
-                <primitive object={scene} scale={isMobile ? [0.45, 0.45, 0.45] : [0.9, 0.9, 0.9]}>
+                <primitive object={scene} scale={isMobile ? [0.6, 0.6, 0.6] : [0.9, 0.9, 0.9]}>
                     <group ref={screenRef} position={SCREEN_POSITION} quaternion={SCREEN_QUATERNION}>
                         <Html
                             transform

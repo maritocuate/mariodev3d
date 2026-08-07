@@ -32,13 +32,18 @@
 
 a {
     text-decoration: none;
-    color: inherit !important;
+    color: inherit;
 }
 
 .section-contact .link {
     cursor: pointer;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2rem;
+    transition: color 0.2s ease;
+}
+
+.section-contact .link:hover {
+    color: var(--c-red);
 }
 
 .section-contact .email {
@@ -47,6 +52,12 @@ a {
     left: 0.4rem;
     letter-spacing: 0.75rem;
     position: relative;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.section-contact .email:hover {
+    color: var(--c-red);
 }
 
 @media screen and (max-width: 900px) {

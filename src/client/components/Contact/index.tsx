@@ -75,24 +75,30 @@ function Contact() {
         <div id="contact" ref={sectionRef} className="section section-contact">
             <section className="title-section dimension">
                 <div className="links">
-                    <span
+                    <a
                         className="link"
-                        onClick={() => window.open(links.linkedin, '_blank')}
+                        href={links.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         linkedin
-                    </span>
-                    <span
+                    </a>
+                    <a
                         className="link"
-                        onClick={() => window.open(links.github, '_blank')}
+                        href={links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         github
-                    </span>
-                    <span
+                    </a>
+                    <a
                         className="link"
-                        onClick={() => window.open(links.calendly, '_blank')}
+                        href={links.calendly}
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         calendly
-                    </span>
+                    </a>
                     <a
                         href={'https://marioqdev.vercel.app' + links.resume}
                         target="_blank"

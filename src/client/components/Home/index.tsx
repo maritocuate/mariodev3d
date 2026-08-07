@@ -2,12 +2,10 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 
 import "./Home.css";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -18,20 +16,6 @@ function Home() {
     if (!sectionRef.current || !titleRef.current || !subtitleRef.current)
       return;
 
-    const split = new SplitText(titleRef.current, {
-      type: "chars,words,lines",
-      mask: "lines",
-      linesClass: "line",
-    });
-
-    gsap.from(split.lines, {
-      yPercent: 100,
-      opacity: 0,
-      stagger: 0.03,
-      ease: "power3.out",
-      duration: 0.8,
-      delay: 1,
-    });
     gsap.from(subtitleRef.current, {
       opacity: 0,
       delay: 1.5,
@@ -47,28 +31,24 @@ function Home() {
         scrub: true,
       },
     });
-
-    return () => {
-      split.revert();
-    };
   }, []);
 
   return (
-    <div ref={sectionRef} className="section">
-      <section className="title-section dimension">
+    <div id="home" ref={sectionRef} className="section">
+      <section className="title-section hero-title-section">
         <h1 ref={titleRef} className="header">
-          Mario Quiroga
+          Mario<br/>Quiroga
         </h1>
         <p ref={subtitleRef} className="subtitle">
-          software developer
+          Software Engineer
         </p>
       </section>
-      <DotLottieReact
-        className="scroll-down-animation"
-        src="assets/scrolldown.json"
-        loop
-        autoplay
-      />
+      <div className="scroll-cue" aria-hidden="true">
+        <svg viewBox="0 0 24 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1V29" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M4 21L12 29L20 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
     </div>
   );
 }

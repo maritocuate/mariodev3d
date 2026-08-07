@@ -57,11 +57,9 @@ function About() {
       <section className="title-section dimension">
         <h1 ref={titleRef} className="header">About Me</h1>
         <p ref={contentRef} className='content'>
-          Hi! My name is Mario and I live in Buenos Aires, Argentina. I’ve been programming for about 10 years, starting back when Flash websites were still a thing.<br />
-          Over the past four years, I’ve focused on building modern web applications with React and Next.js (TypeScript), working across both frontend and backend to deliver scalable and consistent solutions. I also have experience working with both relational and non-relational databases.<br /><br />
-          I’ve worked in both product and service companies, collaborating with talented teams on a wide range of web and mobile challenges. I enjoy working with modern tools and continuously evolving technologies to improve both development experience and product quality.<br /><br />
-          More recently, I’ve been integrating AI into my workflow using tools like Cursor—designing custom agent workflows, automating development tasks, and enhancing code quality through AI-assisted testing, refactoring, and code review processes.<br /><br />
-          I genuinely enjoy building software and continuously pushing myself to stay up to date in this fast-moving field.
+          With 10 years of software development experience, I specialize in building modern, scalable web applications using TypeScript, React, and Next.js, backed by hands-on experience with both relational and NoSQL databases.<br /><br />
+          Across product and service companies, my career has evolved alongside web technology—from early interactive platforms to end-to-end AI orchestration for complex projects (using Cursor, custom agent workflows, and automation to streamline architecture, accelerate development, and ensure code quality).<br /><br />
+          I focus on building resilient software, streamlining developer experience, and adopting modern tools to solve complex challenges efficiently.
         </p>
       </section>
     </div>

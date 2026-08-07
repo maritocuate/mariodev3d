@@ -1,4 +1,10 @@
 :root {
+  --c-black: #000000;
+  --c-white: #ffffff;
+  --c-teal: #005147;
+  --c-red: #ba2b2b;
+  --c-orange: #ea553b;
+
   font-family: 'Abel', sans-serif, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,7 +18,7 @@
 
 html,
 body {
-  background-color: #5f77f0;
+  background: var(--c-orange);
   margin: 0;
   padding: 0;
   width: 100%;
@@ -27,8 +33,8 @@ main {
   top: 0;
   width: 100vw;
   height: 100dvh;
-  /*background: linear-gradient(45deg, #5f77f0 0.000%, #c84fc0 50.000%, #4870c5 100.000%);*/
-  background: linear-gradient(45deg, #0c1e5d, #001053, #0005a1);
+  z-index: 2;
+  background: transparent;
 }
 
 .title-section {
@@ -46,18 +52,20 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--c-white);
   position: fixed;
   top: 0;
   z-index: 9;
-  border: 15px solid white;
+  border: 15px solid var(--c-white);
 }
 
 .header {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Anton', sans-serif;
   text-align: left;
   font-size: 6rem;
-  line-height: 0.75;
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .space {
@@ -81,9 +89,9 @@ main {
 }
 
 .skeleton-image {
-  width: 250px;
+  width: 530px;
   height: auto;
-  opacity: 0.6;
+  opacity: 0.2;
   filter: brightness(0.8);
   animation: pulse 2s infinite ease-in-out;
 }

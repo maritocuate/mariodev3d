@@ -6,6 +6,7 @@ import { EffectComposer, SMAA } from "@react-three/postprocessing"
 
 const Scene = lazy(() => import("./components/Scene"))
 import Home from "./components/Home"
+import HeroBackdrop from "./components/Home/HeroBackdrop"
 import About from "./components/About"
 import Skills from "./components/Skills"
 import Contact from "./components/Contact"
@@ -27,6 +28,7 @@ function App() {
       <Skills />
       <Contact />
 
+      <HeroBackdrop />
       <Canvas
         id="canvas"
         style={{ position: 'fixed' }}
@@ -43,7 +45,7 @@ function App() {
           onIncline={() => setDpr(2)}
         />
 
-        <Environment preset="dawn" />
+        <Environment preset="dawn" environmentIntensity={0.5} />
         <Suspense fallback={<Loader />}>
           <Scene />
         </Suspense>

@@ -248,10 +248,20 @@
   resolved "https://registry.npmjs.org/@fontsource/abel/-/abel-5.2.7.tgz"
   integrity sha512-C4iyv0u8xPN9+PVyi/NWTqHZREh6L7Q7yewuD22W35gK8BHyn2qZ9oGweYbo71+ZuTogQA1SmAQdWAdcqQ/7lg==
 
+"@fontsource/anton@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/@fontsource/anton/-/anton-5.3.0.tgz"
+  integrity sha512-OR1D5n124n2XRs66SbX7IjcOSptljEJE8FcDNnlni2y1/M6KpTx7cU2PIWzTSsBj4WFkHPw24On8qw3qkQZuTw==
+
 "@fontsource/bebas-neue@^5.2.7":
   version "5.2.7"
   resolved "https://registry.npmjs.org/@fontsource/bebas-neue/-/bebas-neue-5.2.7.tgz"
   integrity sha512-DsmBrmq55d9BCU0mt4DT4RZDdH8vhWRKEUOfbuNB1EEjMuwbtFvM8N+3gIlkYSFbsb10P8Q19BV5OdpMu2h0fA==
+
+"@fontsource/space-mono@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/@fontsource/space-mono/-/space-mono-5.3.0.tgz"
+  integrity sha512-FrpBMOVWn3PRdRHlrZWC55X3kZG/2BTH7SM5ZyS/bky3iKya2BturI5lk+t0RoDQL2JyHzURsVq/EisCsxpI5A==
 
 "@gsap/react@^2.1.2":
   version "2.1.2"

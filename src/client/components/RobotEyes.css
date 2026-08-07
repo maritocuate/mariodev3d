@@ -1,0 +1,59 @@
+.robot-eyes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.robot-eye-wrap {
+    animation: eye-look 9s ease-in-out infinite;
+}
+
+.robot-eye-mood {
+    animation: eye-mood 11s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.robot-eye {
+    display: block;
+    width: 34px;
+    height: 46px;
+    border-radius: 50% / 60%;
+    background: radial-gradient(circle at 50% 38%, #eafcff 0%, #7fecff 35%, #1fb6e0 72%, rgba(20, 120, 160, 0) 100%);
+    transform-origin: center;
+    animation:
+        eye-blink 4.5s ease-in-out infinite,
+        eye-glow 3s ease-in-out infinite;
+}
+
+@keyframes eye-look {
+    0%, 48%, 100% { transform: translateX(0) rotate(0deg); }
+    12% { transform: translateX(-5px) rotate(0deg); }
+    24% { transform: translateX(0) rotate(0deg); }
+    36% { transform: translateX(5px) rotate(0deg); }
+    /* inclinación "curiosa", como cuando WALL-E gira la cabeza al observar algo */
+    66%, 76% { transform: translateX(0) rotate(-9deg); }
+    86% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes eye-blink {
+    0%, 90%, 94%, 100% { transform: scaleY(1); }
+    92% { transform: scaleY(0.1); }
+}
+
+/* squint sostenido + brillo, distinto del parpadeo rápido: lee como una sonrisa */
+@keyframes eye-mood {
+    0%, 38%, 56%, 100% { transform: scaleY(1); filter: brightness(1) saturate(1); }
+    44%, 50% { transform: scaleY(0.55); filter: brightness(1.3) saturate(1.4); }
+}
+
+@keyframes eye-glow {
+    0%, 100% {
+        box-shadow: 0 0 10px 2px rgba(90, 220, 255, 0.55), 0 0 20px 6px rgba(80, 200, 255, 0.3);
+        filter: brightness(1);
+    }
+    50% {
+        box-shadow: 0 0 14px 4px rgba(90, 220, 255, 0.85), 0 0 30px 10px rgba(80, 200, 255, 0.5);
+        filter: brightness(1.15);
+    }
+}

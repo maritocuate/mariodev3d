@@ -1,12 +1,110 @@
 .robot-eyes {
+    --eye-corner-look: translate(-6px, -4px) rotate(-11deg);
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.robot-eyes-inner {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 24px;
+    width: 100%;
+    height: 100%;
+}
+
+/* terminal pegado a la esquina superior izquierda real de la pantalla del HUD (no de los ojos):
+   en reposo solo titila el caret cada tanto (comparte el ciclo de 9s con eye-look para que los
+   ojos lo miren); al tipear, se vuelve una linea de texto real con el caret siguiendo al ultimo
+   caracter, como una terminal */
+.robot-eyes-terminal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    font: 500 11px/1 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    color: rgba(180, 240, 255, 0.85);
+    white-space: pre;
+    pointer-events: none;
+}
+
+.robot-eyes-terminal-text {
+    margin-right: 1px;
+}
+
+/* listado de comandos disponibles al tipear "help" + Enter, en el mismo lugar que la terminal */
+.robot-eyes-help {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font: 500 10px/1.3 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    color: rgba(180, 240, 255, 0.85);
+    text-align: left;
+    pointer-events: none;
+}
+
+.robot-eyes-terminal[data-invalid] .robot-eyes-terminal-text,
+.robot-eyes-terminal[data-invalid] .robot-eyes-caret {
+    color: rgba(255, 110, 110, 0.9);
+    animation: terminal-shake 0.35s ease-in-out;
+}
+
+.robot-eyes-caret {
+    width: 2px;
+    height: 12px;
+    background: currentColor;
+    opacity: 0;
+    animation: caret-appear 15s ease-in-out infinite;
+}
+
+.robot-eyes[data-typing] .robot-eyes-caret {
+    animation: caret-blink 1s steps(1, jump-none) infinite;
+    opacity: 1;
+}
+
+.robot-eyes[data-mood] .robot-eyes-caret {
+    animation: none;
+    opacity: 0;
+}
+
+.robot-eyes[data-typing] .robot-eye-wrap {
+    animation: none;
+    transform: var(--eye-corner-look);
+    opacity: 0;
+}
+
+@keyframes caret-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes caret-appear {
+    0%, 58%, 100% { opacity: 0; }
+    61% { opacity: 1; }
+    63% { opacity: 0; }
+    65% { opacity: 1; }
+    67% { opacity: 0.3; }
+    69%, 82% { opacity: 1; }
+    90% { opacity: 0; }
+}
+
+@keyframes terminal-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
 }
 
 .robot-eye-wrap {
     animation: eye-look 9s ease-in-out infinite;
+    transition: opacity 0.25s ease;
 }
 
 .robot-eye-mood {
@@ -56,4 +154,134 @@
         box-shadow: 0 0 14px 4px rgba(90, 220, 255, 0.85), 0 0 30px 10px rgba(80, 200, 255, 0.5);
         filter: brightness(1.15);
     }
+}
+
+/* easter egg: tipeando "triste", "sorpresa", "sueño", "enojado" o "guiño" cerca del robot */
+
+.robot-eyes[data-mood="triste"] .robot-eye-mood,
+.robot-eyes[data-mood="sorpresa"] .robot-eye-mood,
+.robot-eyes[data-mood="sueño"] .robot-eye-mood,
+.robot-eyes[data-mood="enojado"] .robot-eye-mood {
+    animation: none;
+}
+
+/* triste */
+.robot-eyes[data-mood="triste"] .robot-eye-wrap:first-child {
+    animation: eye-wrap-triste 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="triste"] .robot-eye-wrap:last-child {
+    animation: eye-wrap-triste-mirror 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="triste"] .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-triste 3.4s ease-in-out 1;
+}
+
+@keyframes eye-wrap-triste {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%, 70% { transform: translateY(5px) rotate(-4deg); }
+}
+@keyframes eye-wrap-triste-mirror {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%, 70% { transform: translateY(5px) rotate(4deg); }
+}
+@keyframes eye-triste {
+    0%, 100% { transform: scaleY(1); filter: brightness(1) saturate(1); }
+    25%, 70% { transform: scaleY(0.55) translateY(3px); filter: brightness(0.75) saturate(0.6); }
+}
+
+/* sorpresa */
+.robot-eyes[data-mood="sorpresa"] .robot-eye-wrap {
+    animation: eye-wrap-sorpresa 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="sorpresa"] .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-sorpresa 3.4s ease-in-out 1;
+}
+
+@keyframes eye-wrap-sorpresa {
+    0%, 100% { transform: translateY(0); }
+    15%, 55% { transform: translateY(-3px); }
+}
+@keyframes eye-sorpresa {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    15%, 55% { transform: scale(1.35, 1.3); filter: brightness(1.4); }
+    75% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+/* sueño */
+.robot-eyes[data-mood="sueño"] .robot-eye-wrap {
+    animation: eye-wrap-sueno 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="sueño"] .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-sueno 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="sueño"] .robot-eyes-inner::after {
+    content: "z";
+    position: absolute;
+    top: -6px;
+    right: -4px;
+    font: 700 14px system-ui, sans-serif;
+    color: rgba(140, 220, 255, 0.75);
+    animation: sueno-z 3.4s ease-in-out 1;
+    pointer-events: none;
+}
+
+@keyframes eye-wrap-sueno {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    40%, 85% { transform: translateY(3px) rotate(-2deg); }
+}
+@keyframes eye-sueno {
+    0%, 100% { transform: scaleY(1); filter: brightness(1); }
+    40%, 85% { transform: scaleY(0.12); filter: brightness(0.6); }
+}
+@keyframes sueno-z {
+    0%, 30%, 100% { opacity: 0; transform: translateY(0) scale(0.8); }
+    45% { opacity: 1; transform: translateY(-4px) scale(1); }
+    85% { opacity: 0; transform: translateY(-14px) scale(1.2); }
+}
+
+/* enojado */
+.robot-eyes[data-mood="enojado"] .robot-eye-wrap:first-child {
+    animation: eye-wrap-enojado 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="enojado"] .robot-eye-wrap:last-child {
+    animation: eye-wrap-enojado-mirror 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="enojado"] .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-enojado 3.4s ease-in-out 1;
+}
+
+@keyframes eye-wrap-enojado {
+    0%, 100% { transform: rotate(0deg); }
+    20%, 70% { transform: rotate(10deg); }
+}
+@keyframes eye-wrap-enojado-mirror {
+    0%, 100% { transform: rotate(0deg); }
+    20%, 70% { transform: rotate(-10deg); }
+}
+@keyframes eye-enojado {
+    0%, 100% { transform: scaleY(1) translateX(0); filter: brightness(1) saturate(1) hue-rotate(0deg); }
+    20%, 70% { transform: scaleY(0.45) translateX(0); filter: brightness(1.15) saturate(1.8) hue-rotate(165deg); }
+    30% { transform: scaleY(0.45) translateX(-1px); }
+    40% { transform: scaleY(0.45) translateX(1px); }
+    50% { transform: scaleY(0.45) translateX(-1px); }
+    60% { transform: scaleY(0.45) translateX(1px); }
+}
+
+/* guiño: un ojo se cierra y se mantiene, el otro conserva solo el brillo (sin parpadeo) */
+.robot-eyes[data-mood="guiño"] .robot-eye-wrap:first-child .robot-eye-mood {
+    animation: none;
+}
+.robot-eyes[data-mood="guiño"] .robot-eye-wrap:first-child .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-wink-closed 3.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="guiño"] .robot-eye-wrap:last-child .robot-eye-mood {
+    animation: none;
+}
+.robot-eyes[data-mood="guiño"] .robot-eye-wrap:last-child .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite;
+}
+
+@keyframes eye-wink-closed {
+    0%, 100% { transform: scaleY(1); }
+    15%, 80% { transform: scaleY(0.08); }
 }

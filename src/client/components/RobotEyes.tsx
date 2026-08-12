@@ -6,7 +6,8 @@ type Mood = (typeof MOOD_KEYWORDS)[number]
 
 const MAX_TYPED_LENGTH = 20
 const IDLE_CLEAR_MS = 4000
-const MOOD_DURATION_MS = 3400
+const MOOD_DURATION_MS = 5400
+const RESET_SHAKE_MS = 600
 const INVALID_SHAKE_MS = 500
 const HELP_DURATION_MS = 5000
 
@@ -19,6 +20,7 @@ function RobotEyes() {
     const [typed, setTyped] = useState("")
     const [invalid, setInvalid] = useState(false)
     const [mood, setMood] = useState<Mood | null>(null)
+    const [resetting, setResetting] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
 
     // fuente de verdad sincrónica del buffer: el estado `typed` es solo para renderizarlo,
@@ -27,6 +29,7 @@ function RobotEyes() {
     const idleClearTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
     const invalidTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
     const moodTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+    const resetTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
     const helpTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
     useEffect(() => {
@@ -58,8 +61,16 @@ function RobotEyes() {
                 if (matched) {
                     setTyped("")
                     clearTimeout(moodTimeoutRef.current)
+                    clearTimeout(resetTimeoutRef.current)
+                    setResetting(false)
                     setMood(matched)
-                    moodTimeoutRef.current = setTimeout(() => setMood(null), MOOD_DURATION_MS)
+                    moodTimeoutRef.current = setTimeout(() => {
+                        // al terminar el gesto, los ojos "se sacuden" un instante como
+                        // volviendo en sí antes de retomar la animación idle
+                        setMood(null)
+                        setResetting(true)
+                        resetTimeoutRef.current = setTimeout(() => setResetting(false), RESET_SHAKE_MS)
+                    }, MOOD_DURATION_MS)
                     return
                 }
 
@@ -94,6 +105,7 @@ function RobotEyes() {
             clearTimeout(idleClearTimeoutRef.current)
             clearTimeout(invalidTimeoutRef.current)
             clearTimeout(moodTimeoutRef.current)
+            clearTimeout(resetTimeoutRef.current)
             clearTimeout(helpTimeoutRef.current)
         }
     }, [])
@@ -101,7 +113,12 @@ function RobotEyes() {
     const isTyping = typed.length > 0
 
     return (
-        <div className="robot-eyes" data-mood={mood ?? undefined} data-typing={isTyping || undefined}>
+        <div
+            className="robot-eyes"
+            data-mood={mood ?? undefined}
+            data-typing={isTyping || undefined}
+            data-resetting={resetting || undefined}
+        >
             <div className="robot-eyes-inner">
                 <div className="robot-eye-wrap">
                     <div className="robot-eye-mood">

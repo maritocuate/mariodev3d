@@ -103,6 +103,7 @@
 }
 
 .robot-eye-wrap {
+    position: relative;
     animation: eye-look 9s ease-in-out infinite;
     transition: opacity 0.25s ease;
 }
@@ -165,123 +166,327 @@
     animation: none;
 }
 
-/* triste */
-.robot-eyes[data-mood="triste"] .robot-eye-wrap:first-child {
-    animation: eye-wrap-triste 3.4s ease-in-out 1;
+/* triste: anticipación (inhala), caída con sobregiro elástico, temblor sostenido (aguantando
+   el llanto) y rebote de recuperación al final — mismo lenguaje cartoon del reset shake.
+   la animación de posición vive en .robot-eye-mood (no en .robot-eye-wrap) para que la
+   lágrima, colgada del wrap, quede estática y no rebote junto con el ojo */
+.robot-eyes[data-mood="triste"] .robot-eye-wrap:first-child .robot-eye-mood {
+    animation: eye-wrap-triste 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
-.robot-eyes[data-mood="triste"] .robot-eye-wrap:last-child {
-    animation: eye-wrap-triste-mirror 3.4s ease-in-out 1;
+.robot-eyes[data-mood="triste"] .robot-eye-wrap:last-child .robot-eye-mood {
+    animation: eye-wrap-triste-mirror 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
 .robot-eyes[data-mood="triste"] .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite, eye-triste 3.4s ease-in-out 1;
+    animation: eye-glow 3s ease-in-out infinite, eye-triste 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
 
 @keyframes eye-wrap-triste {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25%, 70% { transform: translateY(5px) rotate(-4deg); }
+    0% { transform: translateY(0) rotate(0deg); }
+    9% { transform: translateY(-3px) rotate(1.5deg); }
+    20% { transform: translateY(10px) rotate(-7deg); }
+    28% { transform: translateY(5px) rotate(-3deg); }
+    36%, 48%, 60%, 72% { transform: translateY(7px) rotate(-5deg); }
+    42%, 54%, 66% { transform: translateY(5.5px) rotate(-3.5deg); }
+    88% { transform: translateY(-2px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
 @keyframes eye-wrap-triste-mirror {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25%, 70% { transform: translateY(5px) rotate(4deg); }
+    0% { transform: translateY(0) rotate(0deg); }
+    9% { transform: translateY(-3px) rotate(-1.5deg); }
+    20% { transform: translateY(10px) rotate(7deg); }
+    28% { transform: translateY(5px) rotate(3deg); }
+    36%, 48%, 60%, 72% { transform: translateY(7px) rotate(5deg); }
+    42%, 54%, 66% { transform: translateY(5.5px) rotate(3.5deg); }
+    88% { transform: translateY(-2px) rotate(-1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
 @keyframes eye-triste {
-    0%, 100% { transform: scaleY(1); filter: brightness(1) saturate(1); }
-    25%, 70% { transform: scaleY(0.55) translateY(3px); filter: brightness(0.75) saturate(0.6); }
+    0% { transform: scaleY(1) scaleX(1); filter: brightness(1) saturate(1); }
+    9% { transform: scaleY(1.18) scaleX(0.94); filter: brightness(1.05) saturate(1.05); }
+    20% { transform: scaleY(0.35) scaleX(1.2) translateY(4px); filter: brightness(0.65) saturate(0.5); }
+    28% { transform: scaleY(0.62) scaleX(1.05) translateY(2px); filter: brightness(0.8) saturate(0.65); }
+    36%, 48%, 60%, 72% { transform: scaleY(0.5) scaleX(1.1) translateY(3px); filter: brightness(0.72) saturate(0.58); }
+    42%, 54%, 66% { transform: scaleY(0.58) scaleX(1.04) translateY(3px); filter: brightness(0.78) saturate(0.63); }
+    88% { transform: scaleY(0.9) scaleX(0.98) translateY(1px); filter: brightness(0.92) saturate(0.85); }
+    100% { transform: scaleY(1) scaleX(1) translateY(0); filter: brightness(1) saturate(1); }
 }
 
-/* sorpresa */
+/* lagrimita en forma de gota (punta arriba, panza redondeada abajo, como el emoji 😢) que
+   se asoma en el ojo izquierdo justo cuando cae en el sobregiro, se queda quieta durante el
+   temblor y se desvanece antes del rebote de recuperación final; mismo color/opacidad
+   atenuados que usa el ojo mientras está triste (ver eye-triste: brightness 0.72-0.78, saturate 0.58-0.65) */
+.robot-eyes[data-mood="triste"] .robot-eye-wrap:first-child::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 16px;
+    height: 20px;
+    transform: translate(-50%, 2px);
+    background: radial-gradient(circle at 50% 30%, #eafcff 0%, #7fecff 35%, #1fb6e0 72%, rgba(20, 120, 160, 0) 100%);
+    filter: brightness(0.75) saturate(0.6) drop-shadow(0 0 3px rgba(255, 255, 255, 0.85))
+        drop-shadow(0 0 8px rgba(90, 220, 255, 0.85)) drop-shadow(0 0 16px rgba(80, 200, 255, 0.55))
+        drop-shadow(0 0 26px rgba(80, 200, 255, 0.3));
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C12 2 5 11.5 5 16a7 7 0 0 0 14 0C19 11.5 12 2 12 2Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C12 2 5 11.5 5 16a7 7 0 0 0 14 0C19 11.5 12 2 12 2Z'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    opacity: 0;
+    animation: triste-tear 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
+    pointer-events: none;
+}
+
+@keyframes triste-tear {
+    0%, 17%, 75%, 100% { opacity: 0; }
+    22%, 68% { opacity: 0.9; }
+}
+
+/* sorpresa: mismo lenguaje cartoon del reset shake y de triste — anticipación (agachada
+   breve antes del salto) y pop con sobregiro elástico. Con los ojos bien abiertos, se quedan
+   mirando de lado a lado (como buscando de dónde vino el sobresalto) antes de asentar de
+   vuelta al reposo con un último rebote */
 .robot-eyes[data-mood="sorpresa"] .robot-eye-wrap {
-    animation: eye-wrap-sorpresa 3.4s ease-in-out 1;
+    animation: eye-wrap-sorpresa 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
 .robot-eyes[data-mood="sorpresa"] .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite, eye-sorpresa 3.4s ease-in-out 1;
+    animation: eye-glow 3s ease-in-out infinite,
+        eye-sorpresa 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
 
 @keyframes eye-wrap-sorpresa {
-    0%, 100% { transform: translateY(0); }
-    15%, 55% { transform: translateY(-3px); }
+    0% { transform: translate(0, 0); }
+    6% { transform: translate(0, 2px); }
+    16% { transform: translate(0, -9px); }
+    24% { transform: translate(0, -1px); }
+    30% { transform: translate(-7px, -4px); }
+    41% { transform: translate(7px, -4px); }
+    52% { transform: translate(-5px, -4px); }
+    63% { transform: translate(0, -3px); }
+    74% { transform: translate(2px, 0.5px); }
+    86% { transform: translate(-1px, -0.5px); }
+    100% { transform: translate(0, 0); }
 }
 @keyframes eye-sorpresa {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    15%, 55% { transform: scale(1.35, 1.3); filter: brightness(1.4); }
-    75% { transform: scale(1.1); filter: brightness(1.2); }
+    0% { transform: scale(1); filter: brightness(1); }
+    6% { transform: scale(0.88, 1.12); filter: brightness(1.05); }
+    16% { transform: scale(1.48, 1.4); filter: brightness(1.55); }
+    24% { transform: scale(1.15, 1.12); filter: brightness(1.2); }
+    30%, 63% { transform: scale(1.3, 1.25); filter: brightness(1.32); }
+    74% { transform: scale(0.95, 0.97); filter: brightness(1.08); }
+    86% { transform: scale(1.04, 1.02); filter: brightness(1.06); }
+    100% { transform: scale(1); filter: brightness(1); }
 }
 
-/* sueño */
+/* sueño: los ojos se entrecierran y bajan, sin rotar. el gag caricaturesco vive en las "z"
+   (::before chica, ::after grande) flotando arriba del ojo derecho: arrancan recién cuando los
+   ojos ya están cerrados (delay = punto del cierre en eye-wrap-sueno/eye-sueno, 35% de 5.4s) y
+   suben en un ciclo continuo, suave, sin pop ni rotación — solo aparecen, flotan y se desvanecen
+   en loop, como el clásico "z z z" ininterrumpido de un personaje dormido */
 .robot-eyes[data-mood="sueño"] .robot-eye-wrap {
-    animation: eye-wrap-sueno 3.4s ease-in-out 1;
+    animation: eye-wrap-sueno 5.4s ease-in-out 1;
 }
 .robot-eyes[data-mood="sueño"] .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite, eye-sueno 3.4s ease-in-out 1;
+    animation: eye-glow 3s ease-in-out infinite, eye-sueno 5.4s ease-in-out 1;
 }
-.robot-eyes[data-mood="sueño"] .robot-eyes-inner::after {
+.robot-eyes[data-mood="sueño"] .robot-eye-wrap:last-child::before {
     content: "z";
     position: absolute;
-    top: -6px;
-    right: -4px;
-    font: 700 14px system-ui, sans-serif;
-    color: rgba(140, 220, 255, 0.75);
-    animation: sueno-z 3.4s ease-in-out 1;
+    top: -18px;
+    right: -6px;
+    font: 700 18px system-ui, sans-serif;
+    color: rgba(140, 220, 255, 0.85);
+    text-shadow: 0 0 8px rgba(90, 220, 255, 0.6);
+    opacity: 0;
+    animation: sueno-z-float 2.4s ease-in-out infinite 1.9s;
+    pointer-events: none;
+}
+.robot-eyes[data-mood="sueño"] .robot-eye-wrap:last-child::after {
+    content: "z";
+    position: absolute;
+    top: -24px;
+    right: -18px;
+    font: 700 26px system-ui, sans-serif;
+    color: rgba(140, 220, 255, 0.85);
+    text-shadow: 0 0 10px rgba(90, 220, 255, 0.6);
+    opacity: 0;
+    animation: sueno-z-float 2.4s ease-in-out infinite 3.1s;
     pointer-events: none;
 }
 
 @keyframes eye-wrap-sueno {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    40%, 85% { transform: translateY(3px) rotate(-2deg); }
+    0%, 100% { transform: translateY(0); }
+    35%, 85% { transform: translateY(12px); }
 }
 @keyframes eye-sueno {
     0%, 100% { transform: scaleY(1); filter: brightness(1); }
-    40%, 85% { transform: scaleY(0.12); filter: brightness(0.6); }
+    35%, 85% { transform: scaleY(0.12); filter: brightness(0.6); }
 }
-@keyframes sueno-z {
-    0%, 30%, 100% { opacity: 0; transform: translateY(0) scale(0.8); }
-    45% { opacity: 1; transform: translateY(-4px) scale(1); }
-    85% { opacity: 0; transform: translateY(-14px) scale(1.2); }
+@keyframes sueno-z-float {
+    0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+    20% { opacity: 1; transform: translate(1px, -6px) scale(0.85); }
+    60% { opacity: 0.85; transform: translate(4px, -18px) scale(1.1); }
+    100% { opacity: 0; transform: translate(6px, -28px) scale(1.3); }
 }
 
-/* enojado */
+/* enojado: las "cejas" (los wraps) rotan de más y recién asientan en el ángulo final —
+   sobregiro elástico, como el resto del lenguaje cartoon del set. el temblor es más amplio
+   y rápido, y el color pega un salto más fuerte a rojo. arriba de los ojos aparece un ícono
+   de enojo (💢) que entra con pop apenas se cierra la "V" de las cejas, tiembla en sync con
+   los ojos y se desvanece un poco después de que se suelta el gesto */
 .robot-eyes[data-mood="enojado"] .robot-eye-wrap:first-child {
-    animation: eye-wrap-enojado 3.4s ease-in-out 1;
+    animation: eye-wrap-enojado 5.4s ease-in-out 1;
 }
 .robot-eyes[data-mood="enojado"] .robot-eye-wrap:last-child {
-    animation: eye-wrap-enojado-mirror 3.4s ease-in-out 1;
+    animation: eye-wrap-enojado-mirror 5.4s ease-in-out 1;
 }
 .robot-eyes[data-mood="enojado"] .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite, eye-enojado 3.4s ease-in-out 1;
+    animation: eye-glow 3s ease-in-out infinite, eye-enojado 5.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="enojado"] .robot-eye-wrap:last-child::after {
+    content: "💢";
+    position: absolute;
+    top: -20px;
+    right: -50px;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 0;
+    animation: enojado-mark 5.4s ease-in-out 1;
+    pointer-events: none;
 }
 
 @keyframes eye-wrap-enojado {
     0%, 100% { transform: rotate(0deg); }
-    20%, 70% { transform: rotate(10deg); }
+    12% { transform: rotate(18deg); }
+    20%, 70% { transform: rotate(14deg); }
 }
 @keyframes eye-wrap-enojado-mirror {
     0%, 100% { transform: rotate(0deg); }
-    20%, 70% { transform: rotate(-10deg); }
+    12% { transform: rotate(-18deg); }
+    20%, 70% { transform: rotate(-14deg); }
 }
 @keyframes eye-enojado {
     0%, 100% { transform: scaleY(1) translateX(0); filter: brightness(1) saturate(1) hue-rotate(0deg); }
-    20%, 70% { transform: scaleY(0.45) translateX(0); filter: brightness(1.15) saturate(1.8) hue-rotate(165deg); }
-    30% { transform: scaleY(0.45) translateX(-1px); }
-    40% { transform: scaleY(0.45) translateX(1px); }
-    50% { transform: scaleY(0.45) translateX(-1px); }
-    60% { transform: scaleY(0.45) translateX(1px); }
+    12% { transform: scaleY(0.35) translateX(0); filter: brightness(1.25) saturate(2.1) hue-rotate(165deg); }
+    20%, 70% { transform: scaleY(0.4) translateX(0); filter: brightness(1.2) saturate(1.9) hue-rotate(165deg); }
+    26% { transform: scaleY(0.4) translateX(-2.5px); }
+    33% { transform: scaleY(0.4) translateX(2.5px); }
+    40% { transform: scaleY(0.4) translateX(-2.5px); }
+    47% { transform: scaleY(0.4) translateX(2.5px); }
+    54% { transform: scaleY(0.4) translateX(-2px); }
+    61% { transform: scaleY(0.4) translateX(2px); }
+}
+@keyframes enojado-mark {
+    0%, 15% { opacity: 0; transform: translate(0, 6px) scale(0.5) rotate(0deg); }
+    20% { opacity: 1; transform: translate(0, -4px) scale(1.4) rotate(-12deg); }
+    26% { transform: translate(0, 0) scale(1.15) rotate(10deg); }
+    33% { transform: translate(0, -1px) scale(1.25) rotate(-8deg); }
+    40% { transform: translate(0, 0) scale(1.2) rotate(8deg); }
+    47% { transform: translate(0, -1px) scale(1.25) rotate(-8deg); }
+    54% { transform: translate(0, 0) scale(1.2) rotate(8deg); }
+    70% { opacity: 0.8; transform: translate(0, 1px) scale(1.1) rotate(0deg); }
+    78%, 100% { opacity: 0; transform: translate(0, 4px) scale(0.7) rotate(0deg); }
 }
 
-/* guiño: un ojo se cierra y se mantiene, el otro conserva solo el brillo (sin parpadeo) */
+/* guiño: cabeza entera pega una inclinación pícara con sobregiro elástico (anticipación,
+   overshoot, asentamiento) mientras el ojo izquierdo cierra de un snap con squash-and-stretch
+   (se achata ancho, se cierra de golpe, se abre una rendija y recién ahí asienta cerrado) y
+   reabre con otro pop al final. el ojo derecho, que se mantiene abierto, tiene un guiño de
+   brillo propio ("sparkle") justo cuando el otro se cierra, reforzado con un ✨ que centellea
+   al lado */
+.robot-eyes[data-mood="guiño"] .robot-eyes-inner {
+    animation: guino-tilt 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
+}
 .robot-eyes[data-mood="guiño"] .robot-eye-wrap:first-child .robot-eye-mood {
     animation: none;
 }
 .robot-eyes[data-mood="guiño"] .robot-eye-wrap:first-child .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite, eye-wink-closed 3.4s ease-in-out 1;
+    animation: eye-glow 3s ease-in-out infinite,
+        eye-wink-closed 5.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
 .robot-eyes[data-mood="guiño"] .robot-eye-wrap:last-child .robot-eye-mood {
     animation: none;
 }
 .robot-eyes[data-mood="guiño"] .robot-eye-wrap:last-child .robot-eye {
-    animation: eye-glow 3s ease-in-out infinite;
+    animation: eye-glow 3s ease-in-out infinite, eye-wink-sparkle 5.4s ease-in-out 1;
+}
+.robot-eyes[data-mood="guiño"] .robot-eye-wrap:last-child::after {
+    content: "✨";
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0;
+    animation: guino-sparkle 5.4s ease-in-out 1;
+    pointer-events: none;
 }
 
+@keyframes guino-tilt {
+    0% { transform: rotate(0deg) translateY(0); }
+    8% { transform: rotate(-3deg) translateY(-1px); }
+    18% { transform: rotate(7deg) translateY(1px); }
+    26%, 75% { transform: rotate(4deg) translateY(0); }
+    84% { transform: rotate(-2deg) translateY(-0.5px); }
+    92% { transform: rotate(1deg) translateY(0); }
+    100% { transform: rotate(0deg) translateY(0); }
+}
 @keyframes eye-wink-closed {
-    0%, 100% { transform: scaleY(1); }
-    15%, 80% { transform: scaleY(0.08); }
+    0% { transform: scaleY(1) scaleX(1); }
+    12% { transform: scaleY(0.5) scaleX(1.15); }
+    17% { transform: scaleY(0.02) scaleX(1.25); }
+    22% { transform: scaleY(0.15) scaleX(1.1); }
+    27%, 75% { transform: scaleY(0.06) scaleX(1.18); }
+    83% { transform: scaleY(0.4) scaleX(1.1); }
+    88% { transform: scaleY(1.15) scaleX(0.92); }
+    94% { transform: scaleY(0.95) scaleX(1.02); }
+    100% { transform: scaleY(1) scaleX(1); }
+}
+@keyframes eye-wink-sparkle {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    17% { transform: scale(1.15); filter: brightness(1.3); }
+    24% { transform: scale(1.05); filter: brightness(1.1); }
+}
+@keyframes guino-sparkle {
+    0%, 12%, 40%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+    17% { opacity: 1; transform: scale(1.3) rotate(15deg); }
+    24% { opacity: 1; transform: scale(0.9) rotate(-10deg); }
+    32% { opacity: 0.6; transform: scale(1.05) rotate(5deg); }
+}
+
+/* al terminar cualquier gesto: ojos cerrados + sacudida elástica de lado a lado,
+   como si se sacudiera el sueño para "volver en sí" antes de retomar el idle */
+.robot-eyes[data-resetting] .robot-eye-wrap {
+    animation: none;
+}
+.robot-eyes[data-resetting] .robot-eye-mood {
+    animation: none;
+}
+.robot-eyes[data-resetting] .robot-eye {
+    animation: eye-glow 3s ease-in-out infinite, eye-reset-closed 0.6s ease-in-out 1;
+}
+.robot-eyes[data-resetting] .robot-eyes-inner {
+    animation: eyes-reset-shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
+}
+
+@keyframes eyes-reset-shake {
+    0% { transform: translateX(0) scaleX(1); }
+    8% { transform: translateX(-13px) scaleX(1.12); }
+    18% { transform: translateX(12px) scaleX(1.12); }
+    30% { transform: translateX(-10px) scaleX(1.08); }
+    42% { transform: translateX(9px) scaleX(1.08); }
+    54% { transform: translateX(-6px) scaleX(1.04); }
+    66% { transform: translateX(5px) scaleX(1); }
+    78% { transform: translateX(-2px); }
+    90% { transform: translateX(1px); }
+    100% { transform: translateX(0) scaleX(1); }
+}
+
+@keyframes eye-reset-closed {
+    0% { transform: scaleY(1); }
+    12%, 82% { transform: scaleY(0.08); }
+    100% { transform: scaleY(1); }
 }

@@ -17,14 +17,22 @@
 @media (max-width: 768px) {
   #about .header {
     max-width: 250px;
-    right: 2rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     line-height: 0.9;
   }
 
   .content {
-    max-width: 18rem;
-    text-align: justify;
+    width: 100%;
+    max-width: none;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    text-align: center;
     top: 16rem;
-    right: 2rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

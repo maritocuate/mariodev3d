@@ -16,12 +16,17 @@
 
 @media (max-width: 768px) {
   #about .header {
-    max-width: 250px;
+    width: 100%;
+    max-width: none;
+    padding: 0 2rem;
+    box-sizing: border-box;
     right: auto;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     line-height: 0.9;
+    font-size: clamp(5rem, 12vw, 3.5rem);
+    white-space: nowrap;
   }
 
   .content {
@@ -30,7 +35,7 @@
     padding: 0 2rem;
     box-sizing: border-box;
     text-align: center;
-    top: 16rem;
+    top: 9rem;
     right: auto;
     left: 50%;
     transform: translateX(-50%);

@@ -47,8 +47,8 @@ function useScrollAnimation(
         // 2️⃣ About
         tl.to(scene.position, {
             x: isMobile ? 0 : -0.7,
-            y: isMobile ? -0.4 : 0.8,
-            z: 2,
+            y: isMobile ? -1.4 : 0.8,
+            z: isMobile ? 0.8 : 2,
             duration: 1,
         }, 0)
         tl.to(scene.rotation, {
